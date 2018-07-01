@@ -29,10 +29,15 @@ string Soundex::encodedDigits(const string & word) const
 	if (word.empty()) return "";
 
 	string encoding("");
+	string last_digit = "";
+	string digit;
 	for (auto letter : word)
 	{
 		if (isComplete(encoding)) break;
-		encoding += encodedDigit(letter);
+
+		digit = encodedDigit(letter);
+		if (digit != last_digit) encoding += digit;
+		last_digit = digit;
 	}
 	return encoding;
 }
